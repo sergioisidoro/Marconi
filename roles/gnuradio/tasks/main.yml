@@ -1,0 +1,4 @@
+- name: Installing gnuradio
+  package:
+    name: gnuradio
+    state: present

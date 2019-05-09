@@ -1,0 +1,26 @@
+- name: Cloning into gr-osmsdr-gqrx (GQRX specific)
+  git:
+    repo: https://github.com/csete/gr-osmosdr-gqrx
+    dest: "{{working_dir}}/osmsdr"
+
+- name: Creates working directory
+  file:
+    path: "{{working_dir}}/osmsdr/build"
+    state: directory
+
+- name: Cmaking osmsdr
+  command: chdir="{{working_dir}}/osmsdr/build" cmake ..
+
+- make:
+    chdir: "{{working_dir}}/osmsdr/build"
+  become: yes
+
+- make:
+    chdir: "{{working_dir}}/osmsdr/build"
+    target: install
+  become: yes
+
+- command: ldconfig
+  args:
+      chdir: "{{working_dir}}/osmsdr/build"
+  become: yes

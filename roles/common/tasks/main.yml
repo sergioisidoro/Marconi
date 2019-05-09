@@ -1,0 +1,9 @@
+# Example that prints the loopback address and gateway for each host
+
+- debug:
+    msg: "Checking basics"
+
+- name: "Setting up basics"
+  include_tasks: ./setup-folders.yml
+- name: "Installing requirements"
+  include_tasks: ./setup-requirements.yaml

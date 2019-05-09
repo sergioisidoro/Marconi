@@ -1,0 +1,14 @@
+- name: Gnuradio role
+  include_role:
+    name: gnuradio
+
+- name: "Installing osmsdr"
+  include_tasks: ./install_osmsdr.yml
+
+
+- name: "Installing iqbalance"
+  include_tasks: ./install_iqbalance.yml
+
+
+- name: "Installing gqrx"
+  include_tasks: ./install_gqrx.yml

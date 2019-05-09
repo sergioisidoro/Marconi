@@ -1,0 +1,31 @@
+- name: Cloning into dsd
+  git:
+    repo: https://github.com/szechyjs/dsd.git
+    dest: "{{working_dir}}/dsd"
+
+- name: Installing all requirements for DSD
+  package:
+    name:
+      - liblapack-dev
+      - libsndfile1-dev
+      - portaudio19-dev
+      - libitpp-dev
+    state: present
+
+
+- name: Creates working directory
+  file:
+    path: "{{working_dir}}/dsd/build"
+    state: directory
+
+- name: Cmaking mbelib
+  command: chdir="{{working_dir}}/dsd/build" cmake ..
+
+- make:
+    chdir: "{{working_dir}}/dsd/build"
+  become: yes
+
+- make:
+    chdir: "{{working_dir}}/dsd/build"
+    target: install
+  become: yes

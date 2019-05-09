@@ -1,0 +1,4 @@
+- name: Creates working directory
+  file:
+    path: "{{working_dir}}"
+    state: directory

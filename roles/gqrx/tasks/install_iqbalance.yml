@@ -1,0 +1,27 @@
+
+- name: Cloning into iq-bal
+  git:
+    repo: https://git.osmocom.org/gr-iqbal
+    dest: "{{working_dir}}/iqbal"
+
+- name: Creates working directory
+  file:
+    path: "{{working_dir}}/iqbal/build"
+    state: directory
+
+- name: Cmaking iqbal
+  command: chdir="{{working_dir}}/iqbal/build" cmake ..
+
+- make:
+    chdir: "{{working_dir}}/iqbal/build"
+  become: yes
+
+- make:
+    chdir: "{{working_dir}}/iqbal/build"
+    target: install
+  become: yes
+
+- command: ldconfig
+  args:
+      chdir: "{{working_dir}}/iqbal/build"
+  become: yes

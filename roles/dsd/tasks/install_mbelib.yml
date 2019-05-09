@@ -1,0 +1,21 @@
+- name: Cloning into mbelib
+  git:
+    repo: https://github.com/szechyjs/mbelib.git
+    dest: "{{working_dir}}/mbelib"
+
+- name: Creates working directory
+  file:
+    path: "{{working_dir}}/mbelib/build"
+    state: directory
+
+- name: Cmaking mbelib
+  command: chdir="{{working_dir}}/mbelib/build" cmake ..
+
+- make:
+    chdir: "{{working_dir}}/mbelib/build"
+  become: yes
+
+- make:
+    chdir: "{{working_dir}}/mbelib/build"
+    target: install
+  become: yes

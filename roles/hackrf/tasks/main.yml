@@ -1,0 +1,34 @@
+- name: Cloning into hackrf
+  git:
+    repo: https://github.com/mossmann/hackrf.git
+    dest: "{{working_dir}}/hackrf"
+
+- name: Installing Hackrf dependencies
+  package:
+    name:
+      - libusb-1.0-0-dev
+      - libsndfile1-dev
+      - libfftw3-dev
+    state: present
+
+- name: Creates working directory
+  file:
+    path: "{{working_dir}}/hackrf/host/build"
+    state: directory
+
+- name: Cmaking mbelib
+  command: chdir="{{working_dir}}/hackrf/host/build" cmake ..
+
+- make:
+    chdir: "{{working_dir}}/hackrf/host/build"
+  become: yes
+
+- make:
+    chdir: "{{working_dir}}/hackrf/host/build"
+    target: install
+  become: yes
+
+- command: ldconfig
+  args:
+      chdir: "{{working_dir}}/hackrf/host/build"
+  become: yes

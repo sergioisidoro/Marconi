@@ -1,0 +1,34 @@
+- name: Installing QT dependencies for GQRX
+  package:
+    name:
+      - qt5-default
+      - qttools5-dev
+      - libqt5svg5-dev
+    state: present
+
+- name: Cloning into gqrx
+  git:
+    repo: https://github.com/csete/gqrx
+    dest: "{{working_dir}}/gqrx"
+
+- name: Creates working directory
+  file:
+    path: "{{working_dir}}/gqrx/build"
+    state: directory
+
+- name: Cmaking iqbal
+  command: chdir="{{working_dir}}/gqrx/build" cmake ..
+
+- make:
+    chdir: "{{working_dir}}/gqrx/build"
+  become: yes
+
+- make:
+    chdir: "{{working_dir}}/gqrx/build"
+    target: install
+  become: yes
+
+- command: ldconfig
+  args:
+      chdir: "{{working_dir}}/gqrx/build"
+  become: yes

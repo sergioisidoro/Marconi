@@ -1,0 +1,6 @@
+- name: "Installing mbelib"
+  include_tasks: ./install_mbelib.yml
+
+
+- name: "Installing dsd"
+  include_tasks: ./install_dsd.yml

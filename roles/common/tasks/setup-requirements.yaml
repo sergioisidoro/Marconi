@@ -1,0 +1,11 @@
+- name: installing General requirements
+  package:
+    name:
+      - git
+      - make
+      - cmake
+      - build-essential
+      - pkg-config
+      - pulseaudio
+      - libpulse-dev
+    state: present
