@@ -1,7 +1,9 @@
-- name: Cloning into gr-osmsdr-gqrx (GQRX specific)
+- name: Cloning into gr-osmsdr
   git:
-    repo: https://github.com/csete/gr-osmosdr-gqrx
+    repo: https://git.osmocom.org/gr-osmosdr
     dest: "{{working_dir}}/osmsdr"
+# https://git.osmocom.org/gr-osmosdr
+# https://github.com/csete/gr-osmosdr-gqrx
 
 - name: Creates working directory
   file:

@@ -44,6 +44,7 @@ instruction
 - gqrx
 - DSD - digital speech decoder
 - hackrf lib
+- hamfax
 
 ## Does this work on?
 - Ubuntu 18.10 yes

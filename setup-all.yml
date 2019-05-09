@@ -6,4 +6,5 @@
      # - dsd
      # - gnuradio
      # - hackrf
-     - gqrx
+     # - gqrx
+     - hamfax

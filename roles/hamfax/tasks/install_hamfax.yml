@@ -1,0 +1,28 @@
+- name: Cloning into hamfax repo
+  git:
+    repo: https://github.com/sergioisidoro/hamfax-qt5
+    dest: "{{working_dir}}/hamfax"
+
+# git://git.code.sf.net/p/hamfax/code
+
+- name: Installing HAMFX dependencies
+  package:
+    name:
+      - qt5-default
+      - libaudiofile-dev
+    state: present
+
+- name: Autoconf hamfax
+  command: chdir="{{working_dir}}/hamfax" autoreconf -f -i
+
+- name:  Configuring hamfax
+  command: chdir="{{working_dir}}/hamfax" ./configure
+
+- make:
+    chdir: "{{working_dir}}/hamfax"
+  become: yes
+
+- make:
+    chdir: "{{working_dir}}/hamfax"
+    target: install
+  become: yes

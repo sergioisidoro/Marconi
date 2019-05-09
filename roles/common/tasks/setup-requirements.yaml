@@ -8,4 +8,6 @@
       - pkg-config
       - pulseaudio
       - libpulse-dev
+      - automake
+      - autoconf
     state: present

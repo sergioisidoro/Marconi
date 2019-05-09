@@ -1,0 +1,2 @@
+- name: "Installing hamfax"
+  include_tasks: ./install_hamfax.yml

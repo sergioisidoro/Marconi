@@ -2,9 +2,13 @@
   package:
     name:
       - qt5-default
-      - qttools5-dev
-      - libqt5svg5-dev
+      - libqt5gui5
+      - libqt5core5a
+      - libqt5network5
+      - libqt5widgets5
+      - libqt5svg5
     state: present
+
 
 - name: Cloning into gqrx
   git:
